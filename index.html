@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<title>DDMP</title>
+		<meta name="description" content="DDMP is a rich feature Media Player. WIP">
+		<meta name="author" content="David J. D.">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<!--<link rel="shortcut icon" href="/favicon.ico"> -->
+		<!--<link rel="apple-touch-icon" href="/apple-touch-icon.png"> -->
+
+		<link rel="import" href="app.html">
+
+		<style type="text/css">
+			body {
+				margin: 0;
+				padding: 0;
+				background-color: #FFFFFF;
+			}
+			.__upper_panel {
+				background-color: #FFFFFF;
+				position: fixed;
+				width: 100%;
+				top: 0;
+				bottom: 190px;
+				box-shadow: inset 0px 0px 1px rgba(0, 18, 30, 0.2);
+				
+			}
+			.__lower_panel {
+				background-color: #001C2D;
+				position: fixed;
+				height: 190px;
+				width: 100%;
+				bottom: 0;
+			}
+			._control {
+				background-color: #00121E;
+				height: 50px;
+				display: flex;
+				box-shadow: inset 0px 0px 1px rgba(255, 255, 255, 0.2);
+				justify-content: space-between;
+			}
+			.part {
+				flex-grow: 0;
+				flex-basis: 420px;
+			}
+			.controls {
+				display: flex;
+				justify-content: space-between;
+				height: 40px;
+			}
+
+			div.controlsUnit {
+				flex-grow: 0;
+				flex-basis: 40px;
+				margin: 5px;
+				height: 30px;
+				color: #FFFFFF;
+				font-size: 20px;
+				border: none;
+				background-color: transparent;
+			}
+
+			input.controlsUnit {
+				flex-grow: 0;
+				flex-basis: 80px;
+				margin: 5px;
+				padding: 1px;
+				height: 30px;
+				-webkit-appearance: none;
+				background-color: #00121E;
+				border: 1px solid #FFFFFF;
+				border-radius: 2px;
+			}
+
+			input.controlsUnit::-webkit-slider-thumb {
+				-webkit-appearance: none;
+				background-color: #FFFFFF;
+				width: 20px;
+				
+				height: 26px;
+				border-radius: 2px;
+			}
+
+			.scrubber {
+				padding: 4px;
+				width: inherit;
+				height: 10px;
+				margin: 0;
+				padding: 0;
+			}
+
+			input.scrubberUnit {
+				-webkit-appearance: none;
+				background-color: #00121E;
+				width: 100%;
+				height: 6px;
+				float: left;
+				border: 1px solid #FFFFFF;
+				border-radius: 2px;
+				
+				
+			}
+
+			input.scrubberUnit::-webkit-slider-thumb {
+				-webkit-appearance: none;
+				background-color: #FFFFFF;
+				width: 20px;
+				height: 6px;
+				border-radius: 2px;
+			}
+
+			._queue {
+				box-shadow: inset 0px 0px 1px rgba(255, 255, 255, 0.2);
+				height: 140px;
+				width: 100%;
+				overflow-x: scroll;
+				overflow-y: hidden;
+				white-space:nowrap;
+			}
+
+			span.queueTile {
+				background-color: #00121E;
+				border: 1px solid #00121E;
+				width: 120px;
+				height: 120px;
+				margin: 3px;
+				display: inline-block;
+				position: relative;
+				vertical-align:text-top;
+				border-radius: 2px;
+				box-shadow: 0px 0px 1px rgba(255, 255, 255, 0.2);
+			}
+
+			div.queueTileInner {
+				display: flex;
+				height: 120px;
+				flex-direction: column;
+				align-items: center;
+				
+			}
+
+				.row {
+					width: 100%;
+					margin: 0;
+					color: #FFFFFF;
+					padding: 3px;
+					box-shadow: inset 0px 0px 1px rgba(255, 255, 255, 0.1);
+				}
+	
+				.top {
+					flex: 1 0 0;
+				}
+	
+				.mid {
+					flex: 3 0 0;
+					background-color: #001C2D;
+				}
+	
+				.bot {
+					flex: 1 0 0;
+				}
+				
+				._queue::-webkit-scrollbar {
+				    height: 6px;
+					background-color: #00121E;
+				}
+				
+				._queue::-webkit-scrollbar-track {
+				    height: 6px;
+				    border-radius: 10px;
+				}
+				
+				._queue::-webkit-scrollbar-thumb {
+					height: 6px;
+				    border-radius: 10px;
+					background-color: #FFFFFF;
+				    
+				}
+				
+				.toolBar {
+					display: flex;
+					width: 100%;
+					justify-content: flex-end;
+					height: 40px;
+					
+					margin-top: 5px;
+					
+					
+					border-radius: 2px;
+					box-shadow: inset 0px 0px 1px rgba(255, 255, 255, 0.5);
+					border: 1px solid #FFFFFF;
+					box-shadow: 0px 0px 1px rgba(255, 255, 255, 0.5);
+				}
+				
+				.fileInput {
+					position: relative;
+					overflow: hidden;
+					
+					flex-grow: 0;
+					flex-basis: 40px;
+					margin: 5px;
+					height: 30px;
+					color: #FFFFFF;
+					font-size: 20px;
+					border: none;
+					
+					background-color: transparent;	
+				}
+				
+				.fileInput input {
+					position: absolute;
+					top: 0;
+					right: 0;
+					margin: 0;
+					padding: 0;
+					font-size: 20px;
+					cursor: pointer;
+					opacity: 0;
+					filter: alpha(opacity=0);
+				}
+				
+				.console {
+					color: #FFFFFF;
+					
+					width: 100%;
+					height: 40px;
+					margin-top: 5px;
+					padding: 5px;
+					text-align: right;
+					vertical-align: middle;
+					font-size: 14px;
+					font-family: "Lucida Console";
+					line-height: 25px;
+					
+					border-radius: 2px;
+					box-shadow: inset 0px 0px 1px rgba(255, 255, 255, 0.5);
+					border: 1px solid #FFFFFF;
+					box-shadow: 0px 0px 1px rgba(255, 255, 255, 0.5);
+				}
+				
+				
+				@-webkit-keyframes blink {
+				    from {
+				        opacity: 1.0;
+				    }
+				    to {
+				        opacity: 0.0;
+				    }
+				}
+				.blink {
+					margin-left: -5px;
+					padding: 0px;
+				    -webkit-animation-name: blink;
+				    -webkit-animation-iteration-count: infinite;
+				    -webkit-animation-timing-function: ease-in-out;
+				    -webkit-animation-duration: 1s;
+				}
+
+		</style>
+	</head>
+	<body>
+		<div class="__upper_panel">
+
+			<audio id="eAudio"></audio>
+			<video id="eVideo"></video>
+		</div>
+		<div class="__lower_panel">
+			<div class="_control">
+				<div class="part">
+					<div class="console">
+						<div>
+						<span>{{view}}</span>
+						<span class="blink">_</span>
+						</div>
+					</div>
+				</div>
+				<div class="part">
+					<div class="controls">
+						<div id="btnTrash" class="controlsUnit">
+							<span class="glyphicon glyphicon-trash"></span>
+						</div>
+						<div id="btnPrevious" class="controlsUnit">
+							<span class="glyphicon glyphicon-step-backward"></span>
+						</div>
+						<div id="btnBackward" class="controlsUnit" disabled>
+							<span class="glyphicon glyphicon-backward"></span>
+						</div>
+						<div id="btnPlay" class="controlsUnit">
+							<span class="glyphicon glyphicon-play"></span>
+						</div>
+						<div id="btnPause" class="controlsUnit">
+							<span class="glyphicon glyphicon-pause"></span>
+						</div>
+						<div id="btnStop" class="controlsUnit">
+							<span class="glyphicon glyphicon-stop"></span>
+						</div>
+						<div id="btnForward" class="controlsUnit">
+							<span class="glyphicon glyphicon-forward"></span>
+						</div>
+						<div id="btnNext" class="controlsUnit">
+							<span class="glyphicon glyphicon-step-forward"></span>
+						</div>
+						<input id="sldVolumen" class="controlsUnit" type="range" min="0" max="1" value="1" step="0.01" />
+					</div>
+					<div class="scrubber">
+						<input class="scrubberUnit" id="sldScrubber" type="range" min="0" max="100" step="0.01" value="0" />
+					</div>
+				</div>
+				<div class="part toolBar">
+					<div class="fileInput">
+						<span class="glyphicon glyphicon-file"></span>
+						<input type="file" id="eSingleFileInput" accept="">
+					</div>
+					<div class="fileInput">
+						<span class="glyphicon glyphicon-folder-open"></span>
+						<input type="file" id="eMultiFileInput" accept="" multiple>
+					</div>
+				</div>
+			</div>
+			<div class="_queue">
+				<div class="queueItemTemplate">
+					<div bind-repeat="item items">
+						<span class="queueTile">
+							<div class="queueTileInner">
+								<div class="top row">
+									{{item.name}}
+								</div>
+								<div class="mid row">
+a
+								</div>
+								<div class="bot row">
+									<div onClick="{{item.command}}">
+										<span class="glyphicon glyphicon-remove"></span>
+									</div>
+								</div>
+							</div>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
