@@ -25,7 +25,7 @@
 				padding: 0;
 				background-color: #FFFFFF;
 			}
-			.__upper_panel {
+			.upperPanel {
 				background-color: #FFFFFF;
 				position: fixed;
 				width: 100%;
@@ -34,14 +34,14 @@
 				box-shadow: inset 0px 0px 1px rgba(0, 18, 30, 0.2);
 				
 			}
-			.__lower_panel {
+			.lowerPanel {
 				background-color: #001C2D;
 				position: fixed;
 				height: 190px;
 				width: 100%;
 				bottom: 0;
 			}
-			._control {
+			.controlBar {
 				background-color: #00121E;
 				height: 50px;
 				display: flex;
@@ -118,7 +118,7 @@
 				border-radius: 2px;
 			}
 
-			._queue {
+			.queueBar {
 				box-shadow: inset 0px 0px 1px rgba(255, 255, 255, 0.2);
 				height: 140px;
 				width: 100%;
@@ -169,17 +169,17 @@
 					flex: 1 0 0;
 				}
 				
-				._queue::-webkit-scrollbar {
+				.queueBar::-webkit-scrollbar {
 				    height: 6px;
 					background-color: #00121E;
 				}
 				
-				._queue::-webkit-scrollbar-track {
+				.queueBar::-webkit-scrollbar-track {
 				    height: 6px;
 				    border-radius: 10px;
 				}
 				
-				._queue::-webkit-scrollbar-thumb {
+				.queueBar::-webkit-scrollbar-thumb {
 					height: 6px;
 				    border-radius: 10px;
 					background-color: #FFFFFF;
@@ -247,34 +247,46 @@
 					box-shadow: 0px 0px 1px rgba(255, 255, 255, 0.5);
 				}
 				
-				
-				@-webkit-keyframes blink {
-				    from {
-				        opacity: 1.0;
-				    }
-				    to {
-				        opacity: 0.0;
-				    }
-				}
-				.blink {
-					margin-left: -5px;
-					padding: 0px;
-				    -webkit-animation-name: blink;
-				    -webkit-animation-iteration-count: infinite;
-				    -webkit-animation-timing-function: ease-in-out;
-				    -webkit-animation-duration: 1s;
-				}
+			/* Blinking Animation */
+			@-webkit-keyframes blink {
+			    from {
+			        opacity: 1.0;
+			    }
+			    to {
+			        opacity: 0.0;
+			    }
+			}
+			
+			.blink {
+				margin-left: -5px;
+				padding: 0px;
+			    -webkit-animation-name: blink;
+			    -webkit-animation-iteration-count: infinite;
+			    -webkit-animation-timing-function: ease-in-out;
+			    -webkit-animation-duration: 1s;
+			}
+
+		.mediaExplorer {
+			
+		}
+
 
 		</style>
 	</head>
 	<body>
-		<div class="__upper_panel">
-
-			<audio id="eAudio"></audio>
-			<video id="eVideo"></video>
+		<div class="upperPanel">
+			<div class="mediaExplorer page">
+				<ul bind-repeat="item items">
+					
+				</ul>
+			</div>
+			<div class="page">
+				<audio id="eAudio"></audio>
+				<video id="eVideo"></video>	
+			</div>
 		</div>
-		<div class="__lower_panel">
-			<div class="_control">
+		<div class="lowerPanel">
+			<div class="controlBar">
 				<div class="part">
 					<div class="console">
 						<div>
@@ -326,7 +338,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="_queue">
+			<div class="queueBar">
 				<div class="queueItemTemplate">
 					<div bind-repeat="item items">
 						<span class="queueTile">
