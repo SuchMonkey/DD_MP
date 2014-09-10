@@ -1,65 +1,144 @@
-body {
-	display: grid;
-	grid-columns: 1fr;
-	grid-rows: 50px 4fr 1fr 3fr;
+/* Layout */
+
+._app-frame {
+	position: fixed;
+	width: 100%;
 }
 
-._menu {
-	grid-column-span: 1;
-	grid-row-span: 1;
+._symbol-strip {
+	height: 30px;
+	top: 0px;
+}
+
+._main-window {
+	top: 30px;
+	bottom: 200px;
+}
+
+._player-controls {
+	bottom: 150px;
+	height: 50px;
+}
+
+._player-queue {
+	bottom: 0px;
+	height: 150px;
 	
-	grid-row: 1;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	white-space:nowrap;
+}
+
+._player-queue::-webkit-scrollbar {
+    height: 10px;
+	background-color: rgba(40, 40, 40, 1);
+}
+
+._player-queue::-webkit-scrollbar-track {
+    height: 10px;
+    background-color: rgba(40, 40, 40, 1);
+}
+
+._player-queue::-webkit-scrollbar-thumb {
+	height: 10px;
+	background-color: rgba(180, 203, 239, 1);
+    
+}
+
+/*** Elements ***/
+
+.glyphicon-small {
+	font-size: 26px;
+	padding: 2px;
+	width: 30px;
+	height: 30px;
+}
+
+.glyphicon-medium {
 	
 }
 
-._main {
-	grid-column-span: 1;
-	grid-row-span: 1;
-	
-	grid-row: 2;
-	
+.glyphicon-large {
+	font-size: 46px;
+	padding: 2px;
+	width: 50px;
+	height: 50px;	
 }
 
-._control {
-	grid-column-span: 1;
-	grid-row-span: 1;
-	
-	grid-row: 3;
+/*** Style ***/
+
+/* Background Colors */
+.c-bg-0 {
+	background-color: rgba(40, 40, 40, 1);
 }
 
-._queue {
-	grid-column-span: 1;
-	grid-row-span: 1;
-	
-	grid-row: 4;
+.c-bg-1 {
+	background-color: rgba(93, 133, 197, 1);
 }
 
+.c-bg-2 {
+	background-color: rgba(180, 203, 239, 1);
+}
+
+.c-bg-3 {
+	background-color: rgba(132, 166, 220, 1);
+}
+
+.c-bg-4 {
+	background-color: rgba(62, 104, 171, 1);
+}
+
+.c-bg-5 {
+	background-color: rgba(36, 82, 154, 1);
+}
+
+/* Foreground Colors */
+.c-fg-0 {
+	color: rgba(40, 40, 40, 1);
+}
+
+.c-fg-1 {
+	color: rgba(93, 133, 197, 1);
+}
+
+.c-fg-2 {
+	color: rgba(180, 203, 239, 1);
+}
+
+.c-fg-3 {
+	color: rgba(132, 166, 220, 1);
+}
+
+.c-fg-4 {
+	color: rgba(62, 104, 171, 1);
+}
+
+.c-fg-5 {
+	color: rgba(36, 82, 154, 1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* debug helper */
 .bordered {
 	border: 1px solid black;
 }
-/*
-<div class="_menu bordered">
-			
-</div>
-<div class="_main bordered">
-	
-</div>
-<div class="_view bordered">
-	
-</div>
-<div class="_option bordered">
-	
-</div>
-<div class="_console bordered">
-	
-</div>
-<div class="_control bordered">
-	
-</div>
-<div class="_tool bordered">
-	
-</div>
-<div class="_queue bordered">
-	
-</div>
-*/
+
+
+
+
+
+
