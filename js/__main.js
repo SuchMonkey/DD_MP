@@ -1,3 +1,14 @@
+(function(){
+	document.addEventListener('DOMContentLoaded', main);
+
+	function main() {
+		var appFileSystem = new fileSystem("testfs");
+	}
+})( window );
+
+
+/*
+
 var app = {
 	mediaQueue: null,
 	fileHandler: null,
@@ -66,3 +77,4 @@ function main() {
 
 
 
+*/

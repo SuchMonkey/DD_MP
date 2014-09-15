@@ -1,16 +1,21 @@
-var __check = new function() {
-	this.apiList = [
+(function() {
+	'use strict';
+	
+	var apiList = [
 		["window.File", true],
 		["window.FileReader", true],
 		["window.FileList", true],
-		["window.Blob", true]
+		["window.Blob", true],
+		["window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.oIndexedDB || window.msIndexedDB", true],
+		["window.IDBKeyRange || window.webkitIDBKeyRange", true],
+		["window.Promise", true]
 	];
 	
-	this.ok = function() {
+	var check = function() {
 	
-		result = true;
+		var result = true;
 		
-		this.apiList.forEach(function(api) {
+		apiList.forEach(function(api) {
 			
 			if(api[1]) {
 				if(eval(api[0])) {
@@ -29,4 +34,9 @@ var __check = new function() {
 		});
 	
 	};
-};
+	
+	if (check()) {
+		alert("Your browser does not fully support DDMP!");
+		return;
+	}
+})( window );
